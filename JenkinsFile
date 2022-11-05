@@ -1,7 +1,7 @@
 pipeline{
 
     agent any
-    
+
     // options { 
     //     ansiColor('css') 
     // }
@@ -23,7 +23,7 @@ pipeline{
                     if(params.ExecutionType == "Sanity"){
 
                         bat "echo Sanity test cases running"
-                        bat "npx cypress run --spec 'cypress/integration/Sanity/*.js'"
+                        bat "npx cypress run --spec 'cypress/integration/Sanity/*.js' --record --key d8c02e98-6c29-4501-85c6-6b0135b41607"
                     } else if(params.ExecutionType == "Functional"){
 
                         bat "echo Functional test cases running"
