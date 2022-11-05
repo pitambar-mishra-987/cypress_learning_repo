@@ -1,12 +1,14 @@
 /// <reference types="Cypress" />
+import GreenKartHomePage from '../../support/pageObjects/GreenKartHomePage'
 
 describe('Greenkart Page Validation',()=>{
     
     it('Verify Add To cart end to end functionality',()=>{
+        const greenKartHomePage = new GreenKartHomePage()
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         
         cy.title().should('eq', 'GreenKart - veg and fruits kart')
-        cy.get('.search-keyword').type('ca')
+        greenKartHomePage.searchBox().type('ca')
         cy.get('.product').should('have.length',5)
         cy.get('.product:visible').should('have.length',4)
         cy.wait(2000)
