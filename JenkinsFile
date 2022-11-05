@@ -3,7 +3,7 @@ pipeline{
     agent any
 
     options { 
-        ansiColor('xterm') 
+        ansiColor('css') 
     }
 
     stages{
