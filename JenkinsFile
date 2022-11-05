@@ -27,7 +27,7 @@ pipeline{
                     } else if(params.ExecutionType == "Functional"){
 
                         bat "echo Functional test cases running"
-                        bat "npx cypress run --spec 'cypress/integration/Functional/*.js'"
+                        bat "npx cypress run --spec 'cypress/integration/Functional/*.js' --record --key d8c02e98-6c29-4501-85c6-6b0135b41607"
                     }
                 }
             }
