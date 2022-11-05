@@ -1,7 +1,7 @@
 pipeline{
 
     agent any
-    NO_COLOR = 1
+    
     // options { 
     //     ansiColor('css') 
     // }
