@@ -2,8 +2,11 @@ pipeline{
 
     agent any
 
-    options { 
-        ansiColor('css') 
+    // options { 
+    //     ansiColor('css') 
+    // }
+    environment { 
+        NO_COLOR = 1
     }
 
     stages{
