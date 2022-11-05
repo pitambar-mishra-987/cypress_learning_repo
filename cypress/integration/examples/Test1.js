@@ -15,11 +15,11 @@ cy.get('.product:visible').should('have.length',4)
 //Parent child chaining
 cy.get('.products').as('productLocator')
 cy.get('@productLocator').find('.product').should('have.length',4)
-cy.get(':nth-child(3) > .product-action > button').click()
-cy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click().then(function()
-{
-    console.log('sf')
-})
+// cy.get(':nth-child(3) > .product-action > button').click()
+// cy.get('@productLocator').find('.product').eq(2).contains('ADD TO CART').click().then(function()
+// {
+//     console.log('sf')
+// })
 
 cy.get('@productLocator').find('.product').each(($el, index, $list) => {
 

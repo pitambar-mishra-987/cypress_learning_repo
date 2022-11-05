@@ -36,3 +36,56 @@ Cypress.Commands.add("selectProduct", (productName) => {
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('HitAPIAndValidateResponse', (key, value)=>{
+
+    cy.request({
+        method: 'POST',
+        url: 'http://216.10.245.166/Library/Addbook.php',
+        body: {
+            "name":"Learn Appium Automation with Java",
+            "isbn":"bcggsss42342",
+            "aisle":"bcggsss42342",
+            "author":"John foe"
+        }
+    }).then(response=>{
+        //cy.log(key[0].length)
+        expect(response.body).to.have.property(key,value)
+        expect(response.body.ID).to.eq("bcggsss42342bcggsss42342")
+    })
+})
+
+Cypress.Commands.add('HitAPI',(method,url,body)=>{
+
+    cy.request({
+        method: method,
+        url: url,
+        body: body
+    }).then(res =>{
+        // cy.log(res.body)
+    })
+})
+
+export function generateAlphaNumericString(length) {
+    //var length = 9;
+    var result = '';
+    var characters = 'ABCDEFabcdef0123456789'
+    var charactersLength = characters.length;
+
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+export function generateDynamicNumbers(length) {
+
+    var result = '';
+    var characters = '0123456789'
+    var charactersLength = characters.length;
+
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
