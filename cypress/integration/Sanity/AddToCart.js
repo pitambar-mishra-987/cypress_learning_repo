@@ -43,13 +43,13 @@ describe('Greenkart Page Validation',()=>{
             expect(successMessage).to.include('Thank you, your order has been placed successfully ')
         })
     })
-    it('Verify number of items in Add To cart page',()=>{
+    it.only('Verify number of items in Add To cart page',()=>{
         const greenKartHomePage = new GreenKartHomePage()
         cy.visit('https://rahulshettyacademy.com/seleniumPractise/#/')
         
         cy.title().should('eq', 'GreenKart - veg and fruits kart')
         greenKartHomePage.searchBox().type('bro')
         cy.get('.products').as('productLocator')
-        cy.get('@productLocator').find('.product').should('have.length',4)
+        cy.get('@productLocator').find('.product').should('have.length',1)
     })
 })
