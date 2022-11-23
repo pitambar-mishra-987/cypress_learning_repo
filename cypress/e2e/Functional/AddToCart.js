@@ -3,7 +3,7 @@ import GreenKartHomePage from '../../support/pageObjects/GreenKartHomePage'
 
 describe('Greenkart Page Validation',()=>{
     
-    it.only('Verify Add To cart end to end functionality',()=>{
+    it('Verify Add To cart end to end functionality',()=>{
         const greenKartHomePage = new GreenKartHomePage()
         cy.visit(Cypress.env('baseUrl')+'/seleniumPractise/#/')
         
@@ -51,6 +51,6 @@ describe('Greenkart Page Validation',()=>{
         cy.title().should('eq', 'GreenKart - veg and fruits kart')
         greenKartHomePage.searchBox().type('bro')
         cy.get('.products').as('productLocator')
-        cy.get('@productLocator').find('.product').should('have.length',1)
+        cy.get('@productLocator').find('.product').should('have.length',4)
     })
 })
