@@ -1,0 +1,117 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-11-05T20:48:23.805Z",
+    "end": "2022-11-05T20:48:26.335Z",
+    "duration": 2530,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "45801e44-4a4d-4fe7-8b40-ecc841b127cd",
+      "title": "",
+      "fullFile": "cypress/integration/Functional/BookAPI.js",
+      "file": "cypress/integration/Functional/BookAPI.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "914daed8-3b74-459e-9b62-ea230372fcb0",
+          "title": "Book API Validation",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Add Book API verification",
+              "fullTitle": "Book API Validation Add Book API verification",
+              "timedOut": null,
+              "duration": 204,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var isbn = commonFunction.generateDynamicNumbers(7);\nvar aisle = commonFunction.generateDynamicNumbers();\ncy.request('POST', url + \"Addbook.php\", {\n  \"name\": \"Learn Appium Automation with Java\",\n  \"isbn\": isbn,\n  \"aisle\": aisle,\n  \"author\": \"John foe\"\n}).then(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.have.property(\"Msg\", \"successfully added\");\n  expect(response.body.ID).to.eq(isbn + aisle);\n});",
+              "err": {},
+              "uuid": "592dd986-e49b-4b60-9a78-acd8e6cb447b",
+              "parentUUID": "914daed8-3b74-459e-9b62-ea230372fcb0",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Validate adding a book using AddBook API and retrieve it using GetBook API",
+              "fullTitle": "Book API Validation Validate adding a book using AddBook API and retrieve it using GetBook API",
+              "timedOut": null,
+              "duration": 2223,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var body = {\n  \"name\": \"Learn Cypress with JavaScript\",\n  \"isbn\": commonFunction.generateDynamicNumbers(7),\n  \"aisle\": commonFunction.generateDynamicNumbers(7),\n  \"author\": \"Pitambar Mishra\"\n};\ncy.HitAPI('POST', url + \"Addbook.php\", body).then(function (response) {\n  expect(response.status).to.eq(200);\n  expect(response.body.Msg).to.eq(\"successfully added\");\n  expect(response.body.ID).to.eq(body.isbn + body.aisle);\n  var bookId = response.body.ID;\n  cy.wait(2000);\n  cy.HitAPI('GET', url + 'GetBook.php?ID=' + bookId).then(function (res) {\n    expect(res.status).to.eq(200);\n    expect(res.body[0].book_name).to.eq(body.name);\n    expect(res.body[0].isbn).to.eq(body.isbn);\n    expect(res.body[0].aisle).to.eq(body.aisle);\n    expect(res.body[0].author).to.eq(body.author);\n  });\n});",
+              "err": {},
+              "uuid": "1205683e-4239-4441-a0c4-a391f6b7cb62",
+              "parentUUID": "914daed8-3b74-459e-9b62-ea230372fcb0",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "592dd986-e49b-4b60-9a78-acd8e6cb447b",
+            "1205683e-4239-4441-a0c4-a391f6b7cb62"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 2427,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "useInlineDiffs": false
+      },
+      "version": "4.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "4.0.1"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+pipeline{
+
+    agent any
+
+    // options { 
+    //     ansiColor('css') 
+    // }
+
+    stages{
+        stage('Build'){
+            steps{
+                echo 'Buiding...'
+            }
+        }
+        stage('Install Cypress Dependencies'){
+            steps{
+                bat "npm install"
+            }
+        }
+        stage('RunCypressScript'){
+            steps{
+                script{
+                    if(params.ExecutionType == "Sanity"){
+
+                        bat "echo Sanity test cases running"
+                        bat "npx cypress run --spec 'cypress/e2e/Sanity/*.js' --record --key d8c02e98-6c29-4501-85c6-6b0135b41607"
+                    } else if(params.ExecutionType == "Functional"){
+
+                        bat "echo Functional test cases running"
+                        bat "npx cypress run --spec 'cypress/e2e/Functional/*.js' --record --key d8c02e98-6c29-4501-85c6-6b0135b41607"
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps{
+                echo "Deploying..."
+            }
+        }
+    }
+}
